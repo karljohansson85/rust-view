@@ -1,4 +1,8 @@
+use std::ffi::CString;
+
 #[unsafe(no_mangle)]
-pub extern "C" fn get_string() -> *const u8 {
-    b"Hello from Rust!\0".as_ptr()
+pub extern "C" fn get_string() -> *const i8 {
+    let msg = "Hello from Rust!";
+    let cstr = CString::new(msg).unwrap();
+    cstr.into_raw()
 }
