@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+require "rspec/core/rake_task"
+require "rake/extensiontask"
+
+RSpec::Core::RakeTask.new(:spec)
+
+Rake::ExtensionTask.new("rust_view") do |ext|
+  ext.lib_dir = "lib/rust_view"
+end
+
+task :"clean:rust" do
+  sh "cd 'view-rs'; cargo clean"
+end
+
+task :"compile:rust" do
+  sh "cd 'view-rs'; cargo build --release"
+end
+
+task default: [:"clean:rust", :"compile:rust", :clobber, :compile, :spec]
+
+CLEAN.add("{ext,lib}/**/*.{o,so}", "pkg")
