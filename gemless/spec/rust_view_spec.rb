@@ -3,11 +3,15 @@
 require "spec_helper"
 
 RSpec.describe RustView do
-  include RustView
-
   it "does something useful" do
-    expect(hello).to eq(
+    expect(RustView.new.to_s).to eq(
       String.new("Hello from Rust!", encoding: Encoding::ASCII_8BIT),
     )
+  end
+
+  xit "leaks memory" do
+    loop do
+      RustView.new.to_s
+    end
   end
 end
