@@ -13,5 +13,6 @@
 
 
 ## Notes
+- you can require dynamic libraries immediately, don't need gem.
 - if your rust data is pointing to ruby data, then GC will be more complicated.
 - ruby(15865,0x20d444c40) malloc: *** error for object 0x105384798: pointer being freed was not allocated
