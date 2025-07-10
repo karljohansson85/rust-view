@@ -8,14 +8,18 @@ RSpec.describe RustView do
   end
 
   it "does something useful" do
-    expect(RustView.new.to_s).to eq(
-      String.new("Hello from Rust!", encoding: Encoding::ASCII_8BIT),
+    expect(RustView.new("bork").to_s).to eq(
+      String.new("Hello from bork!", encoding: Encoding::ASCII_8BIT),
+    )
+
+    expect(RustView.new("FOO").to_s).to eq(
+      String.new("Hello from FOO!", encoding: Encoding::ASCII_8BIT),
     )
   end
 
   xit "leaks memory" do
     loop do
-      RustView.new.to_s
+      RustView.new("no leaks please").to_s
     end
   end
 end

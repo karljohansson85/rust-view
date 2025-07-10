@@ -1,8 +1,9 @@
 require_relative "../../rust-view/lib/rust_view/rust_view"
+
 # config/initializers/renderers.rb
 
-ActionController::Renderers.add :rust_view do |object, options|
-  RustView.new.to_s
+ActionController::Renderers.add :rust_view do |params, options|
+  RustView.new(params.fetch(:name)).to_s
 
   # For example, assume this is a decorator or presenter object
   # @custom = object
